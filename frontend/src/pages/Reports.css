@@ -1,0 +1,34 @@
+/* Reports page styles */
+.reports-main { flex: 1; margin-left: 280px; }
+.reports-content { padding: 20px; }
+.reports-filters { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:16px; }
+.reports-filters select { padding:8px 10px; border-radius:6px; border:1px solid #e6e6e6; }
+.summary-cards { display:flex; gap:12px; margin-bottom:16px; }
+.summary-cards > * { flex:1; }
+.savings-card {
+  padding: 12px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(2,6,23,0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.savings-card .savings-title { font-weight:700; margin-bottom:8px; }
+.savings-card .savings-value { font-size:1.4rem; margin-bottom:6px; }
+.savings-card.positive { border-left: 4px solid #10b981; }
+.savings-card.exceeded { border-left: 4px solid #ef4444; }
+.savings-card.neutral { border-left: 4px solid #94a3b8; }
+.savings-card .savings-sub { color: #374151; font-size:0.95rem; }
+.charts-row { display:flex; gap:16px; margin-bottom:16px; }
+.chart-card { flex:1; background:#fff; padding:12px; border-radius:8px; box-shadow:0 2px 8px rgba(2,6,23,0.04); }
+.chart-area { height: 260px; }
+.report-table table { width:100%; border-collapse:collapse; background:#fff; border-radius:6px; overflow:hidden; }
+.report-table th, .report-table td { padding:10px; border-bottom:1px solid #f3f4f6; text-align:left; }
+.report-table thead th { background:#f8fafc; font-weight:700; }
+
+@media (max-width: 900px) {
+  .charts-row { flex-direction:column; }
+  .summary-cards { flex-direction:column; }
+}
