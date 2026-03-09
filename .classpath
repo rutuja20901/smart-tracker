@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="frontend-expense-tracker/src/main/java"/>
+	<classpathentry kind="src" path="frontend-expense-tracker/src/test/java"/>
+	<classpathentry kind="output" path="frontend-expense-tracker/target/classes"/>
+</classpath>
