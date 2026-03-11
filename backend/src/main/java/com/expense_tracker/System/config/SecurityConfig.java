@@ -1,6 +1,5 @@
 package com.expense_tracker.System.config;
 
-
 import static org.springframework.security.config.Customizer.withDefaults;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-
-
 /*
  node js - localhost:/5173
  */
-
 
 @Configuration
 public class SecurityConfig {
@@ -35,22 +31,20 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-        .cors(withDefaults()) 
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(session ->
-                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-            )
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/auth/**","/h2-console/**").permitAll()   // login/register
-                .requestMatchers("/api/user/expense/**", "/api/user/budget/**","/api/user/report/**","/api/user/dashboard/**").authenticated()
-                .anyRequest().permitAll()
-            )
-            .headers(headers -> headers.frameOptions(frame -> frame.disable()));
+                .cors(withDefaults())
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/**", "/h2-console/**").permitAll() // login/register
+                        .requestMatchers("/api/user/expense/**", "/api/user/budget/**", "/api/user/report/**",
+                                "/api/user/dashboard/**")
+                        .authenticated()
+                        .anyRequest().permitAll())
+                .headers(headers -> headers.frameOptions(frame -> frame.disable()));
 
         http.addFilterBefore(
                 jwtFilter,
-                UsernamePasswordAuthenticationFilter.class
-        );
+                UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
@@ -59,24 +53,24 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-    
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(java.util.List.of("http://localhost:5173"));
+        configuration.setAllowedOrigins(
+                java.util.List.of("http://localhost:5173", "https://smarttrackerapplication.netlify.app"));
         configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(java.util.List.of("*"));
         configuration.setAllowCredentials(true);
 
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
 
         return source;
