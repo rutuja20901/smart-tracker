@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/auth"; 
+const API_URL = "https://expense-tracker-api.onrender.com/auth"; 
 // change port/path if your backend differs
 
 export const registerUser = (registerData) => {
