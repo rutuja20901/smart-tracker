@@ -7,10 +7,10 @@ A full-stack **Expense Tracker application** built using **Spring Boot and React
 ## 🚀 Live Demo
 
 **Frontend (Netlify)**  
-https://your-frontend.netlify.app
+https://smarttrackerapplication.netlify.app
 
 **Backend (Render)**  
-https://expense-tracker-api.onrender.com
+https://smart-tracker-hrkq.onrender.com
 
 ---
 
@@ -138,23 +138,7 @@ Dashboard charts
 Rutuja Chavan
 Java Developer
 
-LinkedIn: (Add your LinkedIn profile link here)
+LinkedIn: https://www.linkedin.com/in/rutuja-chavan-5108b91bb/
 
 
----
 
-### How to Add in GitHub
-
-1. Open your repository
-2. Click **Add file**
-3. Click **Create new file**
-4. Name it:
-
-
-README.md
-
-
-5. Paste the code above
-6. Click **Commit changes**
-
----
