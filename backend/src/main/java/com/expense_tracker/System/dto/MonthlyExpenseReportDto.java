@@ -5,15 +5,23 @@ public class MonthlyExpenseReportDto {
 
 	private int month;
 	private int year;
-	private Double totalExpense;
+	private double totalExpense;
 	public MonthlyExpenseReportDto() {
 		super();
 	}
-	public MonthlyExpenseReportDto(int month, int year, Double totalExpense) {
+	public MonthlyExpenseReportDto(int month, int year, double totalExpense) {
 		super();
 		this.month = month;
 		this.year = year;
 		this.totalExpense = totalExpense;
+	}
+	
+	
+	
+	public MonthlyExpenseReportDto(int month, int year) {
+		super();
+		this.month = month;
+		this.year = year;
 	}
 	public int getMonth() {
 		return month;
@@ -27,10 +35,10 @@ public class MonthlyExpenseReportDto {
 	public void setYear(int year) {
 		this.year = year;
 	}
-	public Double getTotalExpense() {
+	public double getTotalExpense() {
 		return totalExpense;
 	}
-	public void setTotalExpense(Double totalExpense) {
+	public void setTotalExpense(double totalExpense) {
 		this.totalExpense = totalExpense;
 	}
 	@Override

@@ -3,6 +3,8 @@ package com.expense_tracker.System.dao;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+
 import com.expense_tracker.System.dto.ExpenseDaoRequest;
 import com.expense_tracker.System.entity.Expense;
 
@@ -60,6 +62,10 @@ public interface ExpenseDao {
     
     
     Double getTotalExpese(Long userId, String category, LocalDate start, LocalDate end);
+    
+   
+
+       
     
     
 }

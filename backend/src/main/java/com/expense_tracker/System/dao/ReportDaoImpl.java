@@ -28,8 +28,9 @@ public class ReportDaoImpl implements ReportDao {
 				AND YEAR(e.expenseDate) = :year
 				""";
 
-		return entityManager.createQuery(jpql, Double.class).setParameter("userId", userId).setParameter("month", month)
-				.setParameter("year", year).getSingleResult();
+		List<Double> result =  entityManager.createQuery(jpql, Double.class).setParameter("userId", userId).setParameter("month", month)
+				.setParameter("year", year).getResultList();
+		return result.isEmpty() ? 0.0 : result.get(0); 
 	}
 
 	@Override

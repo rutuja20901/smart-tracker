@@ -33,7 +33,7 @@ public class ReportController {
 	
 	@GetMapping("/savings")
 	public SavingsReportDto getSavings(@RequestParam int month, @RequestParam int year, Authentication authentication) {
-		return reportService.getSavings(month, year, authentication);
+		return reportService.DashboardSummaryDto(month, year, authentication);
 	}
 
 }

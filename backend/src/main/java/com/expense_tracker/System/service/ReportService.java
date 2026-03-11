@@ -27,7 +27,7 @@ public class ReportService {
 		String username = authentication.getName();
 		User user = userRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("User not found!"));
 
-		Double totalExpense = reportDaoImpl.getExpenseMonthly(user.getId(), month, year);
+		double totalExpense = reportDaoImpl.getExpenseMonthly(user.getId(), month, year);
  
 		return new MonthlyExpenseReportDto(month, year, totalExpense);
 	}
@@ -39,7 +39,7 @@ public class ReportService {
 		return reportDaoImpl.getCategoryWiseReport(user.getId());
 	}
 	
-	public SavingsReportDto getSavings(int month, int year, Authentication authentication) {
+	public SavingsReportDto DashboardSummaryDto(int month, int year, Authentication authentication) {
 		String username = authentication.getName();
 		User user = userRepository.findByEmail(username).orElseThrow(() -> new RuntimeException("User not found!"));
 		
@@ -50,7 +50,7 @@ public class ReportService {
 		
 		Double budgetAmount = reportDaoImpl.getTotalSvings(user.getId(), monthStart, monthEnd);
 		
-		Double savings = budgetAmount - totalExpense;
+		Double remainingAmount = budgetAmount - totalExpense;
 		
 		boolean budgetExceeded = totalExpense > budgetAmount;
 		
@@ -64,7 +64,7 @@ public class ReportService {
 		System.out.println("Exceeded Amount = " + exceededAmount);
 
 	
-		return new SavingsReportDto(month, year, budgetAmount,totalExpense,savings,budgetExceeded,exceededAmount);
+		return new SavingsReportDto(month, year, budgetAmount,totalExpense,remainingAmount,budgetExceeded,exceededAmount);
 	}
 
 }

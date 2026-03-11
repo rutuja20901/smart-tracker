@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Repository;
 
 import com.expense_tracker.System.config.LoggedInUser;
@@ -180,6 +181,8 @@ public class ExpenseDaoImpl implements ExpenseDao{
 				.setParameter("end", end)
 				.getSingleResult();
 	}
+
+	
 	
 	
 

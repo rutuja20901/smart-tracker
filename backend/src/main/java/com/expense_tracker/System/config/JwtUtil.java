@@ -20,9 +20,9 @@ public class JwtUtil {
     private final String SECRET_KEY =
             "smarttrackersecretekey123456789123456789";
 
-    public String generateToken(String email) {
+    public String generateToken(User user) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(user.getEmail())
                 .setIssuedAt(new Date())
                 .setExpiration(
                         new Date(System.currentTimeMillis() + 1000 * 60 * 60)
