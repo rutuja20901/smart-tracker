@@ -24,66 +24,65 @@ import com.expense_tracker.System.repository.UserRepository;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired 
+
+	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private JwtUtil jwtUtil;
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	
-	
+
 	@PostMapping("/register")
 	public String register(@RequestBody User user) {
-		
-		if(userRepository.existsByEmail(user.getEmail())) {
+
+		if (userRepository.existsByEmail(user.getEmail())) {
+
+			throw new RuntimeException("This email is already registered");
+		}
+
 		user.setEmail(user.getEmail());
 		user.setName(user.getName());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user.setRoles(Role.ROLE_USER);
 		userRepository.save(user);
 		return "User Register Successfully!";
-		}
-		else {
-			throw new RuntimeException("This email is already registered");
-		}
+
 	}
-	
+
 	@PostMapping("/login")
 	public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-		
-		
-		User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("User not found!"));
-		
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+
+		User user = userRepository.findByEmail(request.getEmail())
+				.orElseThrow(() -> new RuntimeException("User not found!"));
+
 		System.out.println("Input email: " + request.getEmail());
 		System.out.println("DB email: " + user.getEmail());
 		System.out.println("Password match: " +
-		    passwordEncoder.matches(request.getPassword(), user.getPassword()));
-		if(!passwordEncoder.matches(request.getPassword(), user.getPassword())){
+				passwordEncoder.matches(request.getPassword(), user.getPassword()));
+		if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
 			throw new RuntimeException("Invalid Password!");
 		}
-		
-		 String token = jwtUtil.generateToken(user);
-		 
-		 return ResponseEntity.ok(
-		            new AuthResponse(
-		                    
-		                    user.getEmail(),
-		                    user.getName(),
-		                    token
-		            )
-		    );
+
+		String token = jwtUtil.generateToken(user);
+
+		return ResponseEntity.ok(
+				new AuthResponse(
+
+						user.getEmail(),
+						user.getName(),
+						token));
 	}
-	
+
 	@GetMapping("/users")
-	public List<User> listUser(){
+	public List<User> listUser() {
 		return userRepository.findAll();
-		}
+	}
 
 }
