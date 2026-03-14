@@ -36,10 +36,11 @@ public class SecurityConfig {
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authorizeHttpRequests(auth -> auth
-                                                .requestMatchers("/auth/**", "/h2-console/**").permitAll() // login/register
+                                                .requestMatchers(org.springframework.http.HttpMethod.OPTIONS, "/**")
+                                                .permitAll()
+                                                .requestMatchers("/auth/**", "/h2-console/**").permitAll()
                                                 .requestMatchers("/api/user/expense/**", "/api/user/budget/**",
-                                                                "/api/user/report/**",
-                                                                "/api/user/dashboard/**")
+                                                                "/api/user/report/**", "/api/user/dashboard/**")
                                                 .authenticated()
                                                 .anyRequest().permitAll())
                                 .headers(headers -> headers.frameOptions(frame -> frame.disable()));
@@ -68,7 +69,7 @@ public class SecurityConfig {
                 CorsConfiguration configuration = new CorsConfiguration();
                 configuration.setAllowedOrigins(
                                 java.util.List.of("http://localhost:5173",
-                                                "https://smart-tracker-tau.vercel.app/register"));
+                                                "https://smart-tracker-tau.vercel.app"));
                 configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 configuration.setAllowedHeaders(java.util.List.of("*"));
                 configuration.setAllowCredentials(true);
