@@ -2,7 +2,7 @@
 
 import axiosInstace from "../utils/axiosInstance";
 
-const API_URL = "http://localhost:8080/auth";
+const API_URL = "https://expense-tracker-api.onrender.com/auth";
 
 export const loginUser = (data) =>
     axiosInstace.post(`${API_URL}/login`,data);

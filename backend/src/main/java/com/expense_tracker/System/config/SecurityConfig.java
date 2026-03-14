@@ -24,55 +24,58 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
-    private JwtFilter jwtFilter;
+        @Autowired
+        private JwtFilter jwtFilter;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        @Bean
+        public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http
-                .cors(withDefaults())
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/h2-console/**").permitAll() // login/register
-                        .requestMatchers("/api/user/expense/**", "/api/user/budget/**", "/api/user/report/**",
-                                "/api/user/dashboard/**")
-                        .authenticated()
-                        .anyRequest().permitAll())
-                .headers(headers -> headers.frameOptions(frame -> frame.disable()));
+                http
+                                .cors(withDefaults())
+                                .csrf(csrf -> csrf.disable())
+                                .sessionManagement(session -> session
+                                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers("/auth/**", "/h2-console/**").permitAll() // login/register
+                                                .requestMatchers("/api/user/expense/**", "/api/user/budget/**",
+                                                                "/api/user/report/**",
+                                                                "/api/user/dashboard/**")
+                                                .authenticated()
+                                                .anyRequest().permitAll())
+                                .headers(headers -> headers.frameOptions(frame -> frame.disable()));
 
-        http.addFilterBefore(
-                jwtFilter,
-                UsernamePasswordAuthenticationFilter.class);
+                http.addFilterBefore(
+                                jwtFilter,
+                                UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    }
+                return http.build();
+        }
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+        @Bean
+        PasswordEncoder passwordEncoder() {
+                return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration config) throws Exception {
-        return config.getAuthenticationManager();
-    }
+        @Bean
+        public AuthenticationManager authenticationManager(
+                        AuthenticationConfiguration config) throws Exception {
+                return config.getAuthenticationManager();
+        }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+        @Bean
+        public CorsConfigurationSource corsConfigurationSource() {
 
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(
-                java.util.List.of("http://localhost:5173", "https://smarttrackerapplication.netlify.app"));
-        configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(java.util.List.of("*"));
-        configuration.setAllowCredentials(true);
+                CorsConfiguration configuration = new CorsConfiguration();
+                configuration.setAllowedOrigins(
+                                java.util.List.of("http://localhost:5173",
+                                                "https://smart-tracker-tau.vercel.app/register"));
+                configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                configuration.setAllowedHeaders(java.util.List.of("*"));
+                configuration.setAllowCredentials(true);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+                UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+                source.registerCorsConfiguration("/**", configuration);
 
-        return source;
-    }
+                return source;
+        }
 }
