@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./jwt";
 
 const axiosInstance = axios.create({
-        baseURL: "http://localhost:8080",
+        baseURL: "https://expense-tracker-api.onrender.com/auth",
         headers:{
                 "Content-Type" : "application/json",
         },
