@@ -6,8 +6,8 @@ A full-stack **Expense Tracker application** built using **Spring Boot and React
 
 ## 🚀 Live Demo
 
-**Frontend (Netlify)**  
-https://smarttrackerapplication.netlify.app
+**Frontend (Vercel)**  
+https://smart-tracker-tau.vercel.app/
 
 **Backend (Render)**  
 https://smart-tracker-hrkq.onrender.com
@@ -46,7 +46,7 @@ https://smart-tracker-hrkq.onrender.com
 - JavaScript
 
 ### Deployment
-- Frontend deployed on Netlify
+- Frontend deployed on Vercel
 - Backend deployed on Render
 - Code hosted on GitHub
 
