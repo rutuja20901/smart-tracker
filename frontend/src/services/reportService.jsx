@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:8080/api/user/report";
+const API_BASE = "/api/user/report";
 
 const getAuthHeader = () => {
   const token = localStorage.getItem("token");
