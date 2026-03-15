@@ -71,7 +71,8 @@ public class SecurityConfig {
                 configuration.setAllowedOriginPatterns(
                                 java.util.List.of(
                                                 "http://localhost:5173",
-                                                "https://*.vercel.app"));
+                                                "https://*.vercel.app",
+                                                "https://smart-tracker-tau.vercel.app"));
 
                 configuration.setAllowedMethods(
                                 java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
