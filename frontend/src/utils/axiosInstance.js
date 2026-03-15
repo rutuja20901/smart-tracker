@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./jwt";
 
 const axiosInstance = axios.create({
-        baseURL: "https://smart-tracker-hrkq.onrender.com/auth",
+        baseURL: "https://smart-tracker-hrkq.onrender.com",
         headers:{
                 "Content-Type" : "application/json",
         },
