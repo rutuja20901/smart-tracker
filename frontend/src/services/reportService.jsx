@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "/api/user/report";
+const API_BASE = "https://smart-tracker-hrkq.onrender.com/api/user/report";
 
 const getAuthHeader = () => {
   const token = localStorage.getItem("token");
